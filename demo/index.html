@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>RoyalSlider - play/pause button module dev</title>
+    <link href="../royalslider/royalslider.css" rel="stylesheet"/>
+    <link href="../royalslider/skins/default/rs-default.css" rel="stylesheet"/>
+    <script type="text/javascript" language="javascript" src="../royalslider/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/jquery.royalslider.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.active-class.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.auto-height.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.autoplay.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.bullets.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.fullscreen.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.nav-auto-hide.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.playpause.js"></script>
+    <script type="text/javascript" language="javascript" src="../royalslider/dev/modules/jquery.rs.video.js"></script>
+    <style>
+        body { background: #000000; }
+        #slideshowcontainer { width: 1000px; margin-left: auto; margin-right: auto; }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="slideshowcontainer" class="royalSlider rsDefault">
+        <img class="rsImg" src="images/f16-1.jpg">
+        <img class="rsImg" src="images/typhoon.jpg">
+        <img class="rsImg" src="images/lancaster.jpg">
+        <img class="rsImg" src="images/vulcan.jpg">
+        <img class="rsImg" src="images/redarrow.jpg">
+        <img class="rsImg" src="images/paf.jpg">
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".royalSlider").royalSlider({
+//            autoScaleSliderWidth: 1000,
+//            autoScaleSliderHeight: 518,
+//            autoScaleSlider: true,
+            keyboardNavEnabled: true,
+            loop: true,
+            transitionType: 'fade',
+            imageScalePadding: 0,
+            slidesSpacing: 0,
+            autoplay: {
+                enabled: true,
+                pauseOnHover: false,
+                stopAtAction: false,
+                delay: 3000
+            },
+            thumbs: {
+                fitInViewport: true
+            },
+            fullscreen: {
+                enabled: true
+            },
+            playpause: {
+                enabled: true
+            }
+        });
+        // hide navigation bullets, fullscreen button and play/pause button until hovering over the slider
+        var slider = $('.royalSlider'),
+                fsbtn = slider.find('.rsFullscreenBtn').addClass('rsHidden'),
+                bullets = slider.find('.rsBullets').addClass('rsHidden'),
+                ppbtn = slider.find('.rsPlayPauseBtn').addClass('rsHidden');
+        slider.hover(function () {
+            fsbtn.removeClass('rsHidden');
+            bullets.removeClass('rsHidden');
+            ppbtn.removeClass('rsHidden');
+        }, function () {
+            fsbtn.addClass('rsHidden');
+            bullets.addClass('rsHidden');
+            ppbtn.addClass('rsHidden');
+        });
+    });
+</script>
+
+</body>
+</html>
